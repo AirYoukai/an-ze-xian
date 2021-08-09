@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anzexian.demo.mapper.InsuranceServiceMapper">
+  <resultMap id="BaseResultMap" type="com.anzexian.demo.entity.InsuranceService">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="service_premium" jdbcType="INTEGER" property="servicePremium" />
+    <result column="service_price" jdbcType="INTEGER" property="servicePrice" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="service_duration" jdbcType="INTEGER" property="serviceDuration" />
+    <result column="claim_method" jdbcType="VARCHAR" property="claimMethod" />
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, service_name, service_premium, service_price, company_id, service_duration, claim_method, 
+    industry, contact_phone, contact_name, is_deleted, create_time
+  </sql>
+  <select id="selectByExample" parameterType="com.anzexian.demo.entity.InsuranceServiceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from insurance_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from insurance_service
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from insurance_service
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.anzexian.demo.entity.InsuranceServiceExample">
+    delete from insurance_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert  useGeneratedKeys="true" keyProperty="id" id="insert" parameterType="com.anzexian.demo.entity.InsuranceService">
+    insert into insurance_service (id, service_name, service_premium, 
+      service_price, company_id, service_duration, 
+      claim_method, industry, contact_phone, 
+      contact_name, is_deleted, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{serviceName,jdbcType=VARCHAR}, #{servicePremium,jdbcType=INTEGER}, 
+      #{servicePrice,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{serviceDuration,jdbcType=INTEGER}, 
+      #{claimMethod,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert  useGeneratedKeys="true" keyProperty="id" id="insertSelective" parameterType="com.anzexian.demo.entity.InsuranceService">
+    insert into insurance_service
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serviceName != null">
+        service_name,
+      </if>
+      <if test="servicePremium != null">
+        service_premium,
+      </if>
+      <if test="servicePrice != null">
+        service_price,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="serviceDuration != null">
+        service_duration,
+      </if>
+      <if test="claimMethod != null">
+        claim_method,
+      </if>
+      <if test="industry != null">
+        industry,
+      </if>
+      <if test="contactPhone != null">
+        contact_phone,
+      </if>
+      <if test="contactName != null">
+        contact_name,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePremium != null">
+        #{servicePremium,jdbcType=INTEGER},
+      </if>
+      <if test="servicePrice != null">
+        #{servicePrice,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceDuration != null">
+        #{serviceDuration,jdbcType=INTEGER},
+      </if>
+      <if test="claimMethod != null">
+        #{claimMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.anzexian.demo.entity.InsuranceServiceExample" resultType="java.lang.Long">
+    select count(*) from insurance_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update insurance_service
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceName != null">
+        service_name = #{record.serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicePremium != null">
+        service_premium = #{record.servicePremium,jdbcType=INTEGER},
+      </if>
+      <if test="record.servicePrice != null">
+        service_price = #{record.servicePrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceDuration != null">
+        service_duration = #{record.serviceDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.claimMethod != null">
+        claim_method = #{record.claimMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industry != null">
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null">
+        contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null">
+        contact_name = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update insurance_service
+    set id = #{record.id,jdbcType=INTEGER},
+      service_name = #{record.serviceName,jdbcType=VARCHAR},
+      service_premium = #{record.servicePremium,jdbcType=INTEGER},
+      service_price = #{record.servicePrice,jdbcType=INTEGER},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      service_duration = #{record.serviceDuration,jdbcType=INTEGER},
+      claim_method = #{record.claimMethod,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      contact_name = #{record.contactName,jdbcType=VARCHAR},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anzexian.demo.entity.InsuranceService">
+    update insurance_service
+    <set>
+      <if test="serviceName != null">
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePremium != null">
+        service_premium = #{servicePremium,jdbcType=INTEGER},
+      </if>
+      <if test="servicePrice != null">
+        service_price = #{servicePrice,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceDuration != null">
+        service_duration = #{serviceDuration,jdbcType=INTEGER},
+      </if>
+      <if test="claimMethod != null">
+        claim_method = #{claimMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anzexian.demo.entity.InsuranceService">
+    update insurance_service
+    set service_name = #{serviceName,jdbcType=VARCHAR},
+      service_premium = #{servicePremium,jdbcType=INTEGER},
+      service_price = #{servicePrice,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=INTEGER},
+      service_duration = #{serviceDuration,jdbcType=INTEGER},
+      claim_method = #{claimMethod,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/apply/apply_service/apply_service",
+    "pages/logs/logs",
+    "pages/user/user_my/user_my",
+    "pages/user/user_order/user_order",
+    "pages/user/user_order_info/user_order_info",
+    "pages/apply/apply_service_info/appli_service_info",
+    "pages/apply/apply_map/apply_map",
+    "pages/user/user_claim/user_claim",
+    "pages/apply/apply_company/apply_company",
+    "pages/apply/apply_news/apply_news",
+    "pages/user/user_claim_info/user_claim_info",
+    "pages/apply/apply_news_info/apply_news_info",
+    "pages/user/user_waiting/user_waiting"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/apply/apply_map/apply_map",
+        "text": "IT服务",
+        "iconPath": "images/xihuan.png",
+        "selectedIconPath": "images/xihuanfill.png"
+      },
+      {
+        "pagePath": "pages/user/user_my/user_my",
+        "text": "个人中心",
+        "iconPath": "images/yonghu.png",
+        "selectedIconPath": "images/yonghufill.png"
+      }
+    ],
+    "color": "#333",
+    "selectedColor": "#f7982a",
+    "backgroundColor": "#f6f6f6",
+    "borderStyle": "white"
+  }
+}

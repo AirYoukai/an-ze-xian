@@ -1,0 +1,22 @@
+
+<view class="container">
+	<scroll-view class="container-body" scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle"
+		lower-threshold="50" bindscrolltolower="scrollLoading">
+		<view  wx:if="{{newsList.length>0}}" class="service-list">
+			<!-- <navigator class="service-item" wx:for="{{newsList}}" wx:key="{{item.id}}" url="../apply_service_info/apply_service_info?id={{item.id}}"> -->
+			<navigator class="service-item" wx:for="{{newsList}}" wx:key="{{item.id}}"
+				url="/pages/apply/apply_news_info/apply_news_info?id={{item.id}}">
+
+				<!-- <view class="service-img">
+					<image src="{{item.imgurl}}" mode="aspectFill"></image>
+				</view> -->
+				<view class="service-text">
+					<view class="service-tite">{{item.title}}</view>
+					<text class="service-city">发布时间：{{item.releaseTime}}</text>
+				</view>
+			</navigator>
+		</view>
+		<view wx:if="{{newsList.length==0}}" style="font-size:44rpx; line-height: 2">暂无内容</view>
+		<view class="gototop {{scrolltop>200?'active':''}}" bindtap="goToTop"></view>
+	</scroll-view>
+</view>

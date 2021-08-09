@@ -1,0 +1,27 @@
+<view class="container">
+	<view wx:if="{{loginFlag}}" class="my-list">
+		<navigator class="my-item" url="../user_order/user_order">
+			<image src="../../../images/icon_24.png" mode="aspectFit"></image>
+			<text>我的订单</text>
+		</navigator>
+		<navigator class="my-item" url="../user_waiting/user_waiting">
+			<image src="../../../images/saoma.png" mode="aspectFit"></image>
+			<text>待付订单</text>
+		</navigator>
+		<navigator class="my-item" url="../user_claim/user_claim">
+			<image src="../../../images/icon_28.png" mode="aspectFit"></image>
+			<text>我的流程</text>
+		</navigator>
+		<view class="btn-submit">
+			<button class="btn-block btn-orange" bindtap="scanCodeLoginWeb">网页扫码登录</button>
+		</view>
+		<view class="btn-submit">
+			<button class="btn-block btn-orange" bindtap="logout">退出登录</button>
+		</view>
+	</view>
+	<view wx:if="{{!loginFlag}}" class="my-list">
+		<view class="btn-submit">
+			<button class="btn-block btn-orange" bindtap="login">登录</button>
+		</view>
+	</view>
+</view>

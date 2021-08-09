@@ -1,0 +1,26 @@
+<view class="container">
+	<view class="container-body space-content">
+		<view class="space-top">
+			<view class="space-info">
+				<!-- <view class="space-title">{{newsInfo.ParkName}}</view>
+  	  	<view class="space-tags">
+  	  		<text wx:for="{{spacedata.TagIDs}}" wx:key="*this">{{item}}</text>
+  	  	</view> -->
+				<view class="space-list">
+					<view class="space-item">
+						<text class="text-left">标题：</text>
+						<text class="text-right"> {{newsInfo.title}}</text>
+					</view>
+					<view class="space-item">
+						<text class="text-left">发布时间：</text>
+						<text class="text-right"> {{newsInfo.releaseTime}}</text>
+					</view>
+					<view class="space-item">
+						<text class="text-left">内容摘要：</text>
+						<text class="text-right"> {{newsInfo.shortContent}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

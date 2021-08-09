@@ -1,0 +1,75 @@
+<view class="container">
+	<!-- <view class="container-body">
+		<view class="service-item service-detail"> -->
+			<!-- <view class="service-img">
+				<image src="{{myOrderInfo.imgurl}}" mode="aspectFill"></image>
+			</view> -->
+			<!-- <view class="service-text">
+				<view class="service-tite">{{myOrderInfo.name}}</view>
+				<view class="service-tags">
+					<text>{{myOrderInfo.tag}}</text>
+				</view>
+				<text class="service-city">服务城市：{{myOrderInfo.city}}</text>
+			</view>
+		</view>
+  </view> -->
+  <view class="container-body space-content">
+	  <view class="space-top">
+  	  <view class="space-info">
+  	  	<!-- <view class="space-title">{{spacedata.ParkName}}</view>
+  	  	<view class="space-tags">
+  	  		<text wx:for="{{spacedata.TagIDs}}" wx:key="*this">{{item}}</text>
+  	  	</view> -->
+  	  	<view class="space-list">
+  	  		<view class="space-item">
+  	  			<text class="text-left">到期时间：</text>
+						<text class="text-right"> {{myOrderInfo.expireTime}}</text>
+
+  	  		</view>
+  	  		<view class="space-item">
+  	  			<text class="text-left">套餐名：</text>
+						<text class="text-right"> {{myOrderInfo.serviceName}}</text>
+  	  		</view>
+  	  		<!-- <view class="space-item">
+  	  			<text class="text-left">赔偿金额：</text>
+						<text class="text-right"> {{myOrderInfo.servicePremium}}</text>
+          </view> -->
+          <view class="space-item">
+  	  			<text class="text-left">适用行业：</text>
+						<text class="text-right"> {{myOrderInfo.industry}}</text>
+  	  		</view>
+          <view class="space-item">
+  	  			<text class="text-left">公司：</text>
+						<text class="text-right"> {{myOrderInfo.companyName}}</text>
+          </view>
+          <!-- <view class="space-item">
+  	  			<text class="text-left">理赔方式：</text>
+						<text class="text-right"> {{myOrderInfo.claimMethod}}</text>
+          </view> -->
+          <view class="space-item">
+						<text class="text-left">联系人：</text>
+						<text class="text-right"> {{myOrderInfo.contactName}}（电话：{{myOrderInfo.contactPhone}}）</text>	
+          </view>
+         </view>
+  	  </view>
+	  </view>
+	  <!-- <view class="space-block">
+	  	<view class="space-block-title">优惠政策</view>
+	  	<view class="space-block-content">
+	  		<view class="space-passage">{{spacedata.Policy}}</view>
+	  	</view>
+  	</view> -->
+	</view>
+	<view class="btn-submit">
+			<button class="btn-block btn-orange" bindtap="applyClaim">申请流程</button>
+		</view>
+		<view class="btn-submit">
+			<button class="btn-block btn-orange" bindtap="cancelOrder">撤销订单</button>
+		</view>
+	<!-- <view class="container-footer">
+		<text class="apply-btn" bindtap="applyClaim">申请流程</text>
+	</view>
+	<view class="container-footer">
+		<text class="apply-btn" bindtap="cancelOrder">撤销订单</text>
+	</view> -->
+</view>

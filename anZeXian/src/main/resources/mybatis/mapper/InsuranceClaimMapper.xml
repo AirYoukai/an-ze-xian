@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anzexian.demo.mapper.InsuranceClaimMapper">
+  <resultMap id="BaseResultMap" type="com.anzexian.demo.entity.InsuranceClaim">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="status_manager" jdbcType="VARCHAR" property="statusManager" />
+    <result column="status_staff" jdbcType="VARCHAR" property="statusStaff" />
+    <result column="wxpay_id" jdbcType="INTEGER" property="wxpayId" />
+    <result column="claimant_id" jdbcType="INTEGER" property="claimantId" />
+    <result column="payer_id" jdbcType="INTEGER" property="payerId" />
+    <result column="review_manager_id" jdbcType="INTEGER" property="reviewManagerId" />
+    <result column="review_staff_id" jdbcType="INTEGER" property="reviewStaffId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="proof_file_path" jdbcType="VARCHAR" property="proofFilePath" />
+    <result column="cur_pos" jdbcType="INTEGER" property="curPos" />
+    <result column="review_manager_time" jdbcType="TIMESTAMP" property="reviewManagerTime" />
+    <result column="review_staff_time" jdbcType="TIMESTAMP" property="reviewStaffTime" />
+    <result column="payback_time" jdbcType="TIMESTAMP" property="paybackTime" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, status_manager, status_staff, wxpay_id, claimant_id, payer_id, review_manager_id, 
+    review_staff_id, order_id, proof_file_path, cur_pos, review_manager_time, review_staff_time, 
+    payback_time, is_deleted, create_time
+  </sql>
+  <select id="selectByExample" parameterType="com.anzexian.demo.entity.InsuranceClaimExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from insurance_claim
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from insurance_claim
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from insurance_claim
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.anzexian.demo.entity.InsuranceClaimExample">
+    delete from insurance_claim
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.anzexian.demo.entity.InsuranceClaim" useGeneratedKeys="true" keyProperty="id">
+    insert into insurance_claim (id, status_manager, status_staff, 
+      wxpay_id, claimant_id, payer_id, 
+      review_manager_id, review_staff_id, order_id, 
+      proof_file_path, cur_pos, review_manager_time, 
+      review_staff_time, payback_time, is_deleted, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{statusManager,jdbcType=VARCHAR}, #{statusStaff,jdbcType=VARCHAR}, 
+      #{wxpayId,jdbcType=INTEGER}, #{claimantId,jdbcType=INTEGER}, #{payerId,jdbcType=INTEGER}, 
+      #{reviewManagerId,jdbcType=INTEGER}, #{reviewStaffId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
+      #{proofFilePath,jdbcType=VARCHAR}, #{curPos,jdbcType=INTEGER}, #{reviewManagerTime,jdbcType=TIMESTAMP}, 
+      #{reviewStaffTime,jdbcType=TIMESTAMP}, #{paybackTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anzexian.demo.entity.InsuranceClaim" useGeneratedKeys="true" keyProperty="id">
+    insert into insurance_claim
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="statusManager != null">
+        status_manager,
+      </if>
+      <if test="statusStaff != null">
+        status_staff,
+      </if>
+      <if test="wxpayId != null">
+        wxpay_id,
+      </if>
+      <if test="claimantId != null">
+        claimant_id,
+      </if>
+      <if test="payerId != null">
+        payer_id,
+      </if>
+      <if test="reviewManagerId != null">
+        review_manager_id,
+      </if>
+      <if test="reviewStaffId != null">
+        review_staff_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="proofFilePath != null">
+        proof_file_path,
+      </if>
+      <if test="curPos != null">
+        cur_pos,
+      </if>
+      <if test="reviewManagerTime != null">
+        review_manager_time,
+      </if>
+      <if test="reviewStaffTime != null">
+        review_staff_time,
+      </if>
+      <if test="paybackTime != null">
+        payback_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="statusManager != null">
+        #{statusManager,jdbcType=VARCHAR},
+      </if>
+      <if test="statusStaff != null">
+        #{statusStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayId != null">
+        #{wxpayId,jdbcType=INTEGER},
+      </if>
+      <if test="claimantId != null">
+        #{claimantId,jdbcType=INTEGER},
+      </if>
+      <if test="payerId != null">
+        #{payerId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewManagerId != null">
+        #{reviewManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewStaffId != null">
+        #{reviewStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="proofFilePath != null">
+        #{proofFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="curPos != null">
+        #{curPos,jdbcType=INTEGER},
+      </if>
+      <if test="reviewManagerTime != null">
+        #{reviewManagerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewStaffTime != null">
+        #{reviewStaffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paybackTime != null">
+        #{paybackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.anzexian.demo.entity.InsuranceClaimExample" resultType="java.lang.Long">
+    select count(*) from insurance_claim
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update insurance_claim
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.statusManager != null">
+        status_manager = #{record.statusManager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusStaff != null">
+        status_staff = #{record.statusStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxpayId != null">
+        wxpay_id = #{record.wxpayId,jdbcType=INTEGER},
+      </if>
+      <if test="record.claimantId != null">
+        claimant_id = #{record.claimantId,jdbcType=INTEGER},
+      </if>
+      <if test="record.payerId != null">
+        payer_id = #{record.payerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewManagerId != null">
+        review_manager_id = #{record.reviewManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewStaffId != null">
+        review_staff_id = #{record.reviewStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.proofFilePath != null">
+        proof_file_path = #{record.proofFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.curPos != null">
+        cur_pos = #{record.curPos,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewManagerTime != null">
+        review_manager_time = #{record.reviewManagerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewStaffTime != null">
+        review_staff_time = #{record.reviewStaffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paybackTime != null">
+        payback_time = #{record.paybackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update insurance_claim
+    set id = #{record.id,jdbcType=INTEGER},
+      status_manager = #{record.statusManager,jdbcType=VARCHAR},
+      status_staff = #{record.statusStaff,jdbcType=VARCHAR},
+      wxpay_id = #{record.wxpayId,jdbcType=INTEGER},
+      claimant_id = #{record.claimantId,jdbcType=INTEGER},
+      payer_id = #{record.payerId,jdbcType=INTEGER},
+      review_manager_id = #{record.reviewManagerId,jdbcType=INTEGER},
+      review_staff_id = #{record.reviewStaffId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      proof_file_path = #{record.proofFilePath,jdbcType=VARCHAR},
+      cur_pos = #{record.curPos,jdbcType=INTEGER},
+      review_manager_time = #{record.reviewManagerTime,jdbcType=TIMESTAMP},
+      review_staff_time = #{record.reviewStaffTime,jdbcType=TIMESTAMP},
+      payback_time = #{record.paybackTime,jdbcType=TIMESTAMP},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anzexian.demo.entity.InsuranceClaim">
+    update insurance_claim
+    <set>
+      <if test="statusManager != null">
+        status_manager = #{statusManager,jdbcType=VARCHAR},
+      </if>
+      <if test="statusStaff != null">
+        status_staff = #{statusStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayId != null">
+        wxpay_id = #{wxpayId,jdbcType=INTEGER},
+      </if>
+      <if test="claimantId != null">
+        claimant_id = #{claimantId,jdbcType=INTEGER},
+      </if>
+      <if test="payerId != null">
+        payer_id = #{payerId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewManagerId != null">
+        review_manager_id = #{reviewManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewStaffId != null">
+        review_staff_id = #{reviewStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="proofFilePath != null">
+        proof_file_path = #{proofFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="curPos != null">
+        cur_pos = #{curPos,jdbcType=INTEGER},
+      </if>
+      <if test="reviewManagerTime != null">
+        review_manager_time = #{reviewManagerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewStaffTime != null">
+        review_staff_time = #{reviewStaffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paybackTime != null">
+        payback_time = #{paybackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anzexian.demo.entity.InsuranceClaim">
+    update insurance_claim
+    set status_manager = #{statusManager,jdbcType=VARCHAR},
+      status_staff = #{statusStaff,jdbcType=VARCHAR},
+      wxpay_id = #{wxpayId,jdbcType=INTEGER},
+      claimant_id = #{claimantId,jdbcType=INTEGER},
+      payer_id = #{payerId,jdbcType=INTEGER},
+      review_manager_id = #{reviewManagerId,jdbcType=INTEGER},
+      review_staff_id = #{reviewStaffId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      proof_file_path = #{proofFilePath,jdbcType=VARCHAR},
+      cur_pos = #{curPos,jdbcType=INTEGER},
+      review_manager_time = #{reviewManagerTime,jdbcType=TIMESTAMP},
+      review_staff_time = #{reviewStaffTime,jdbcType=TIMESTAMP},
+      payback_time = #{paybackTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

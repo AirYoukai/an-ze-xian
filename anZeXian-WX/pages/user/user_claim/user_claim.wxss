@@ -1,0 +1,2 @@
+/* pages/user/user_claim/user_claim.wxss */
+@import './../user_order/user_order.wxss';

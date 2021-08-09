@@ -1,0 +1,42 @@
+<view class="container">
+	<view class="filter-flex">
+		<view class="filter-content" wx:if="{{showfilter}}">
+			<view class="filter-panel" wx:if="{{showfilterindex==1}}">
+				<view class="filter-panel-left">
+					<view wx:for="{{filterdata.sort}}" wx:key="{{item.id}}" bindtap="setSortIndex" data-sortindex="{{index}}" data-sortid="{{item.id}}" class="{{sortindex==index?'active':''}}">{{item.title}}</view>
+				</view>
+				<view class="filter-panel-right">
+					<view wx:for="{{filterdata.sort[sortindex].subsort}}" wx:key="{{item.id}}" bindtap="setSubsortIndex" data-subsortindex="{{index}}" data-subsortid="{{item.id}}" class="{{subsortindex==index?'active':''}}">{{item.title}}</view>
+				</view>
+			</view>
+			<view class="filter-panel" wx:if="{{showfilterindex==2}}">
+				<view class="filter-panel-left">
+					<view wx:for="{{filterdata.city}}" wx:key="{{item.id}}" bindtap="setCityIndex" data-cityindex="{{index}}" data-cityid="{{item.id}}" class="{{cityindex==index?'active':''}}">{{item.title}}</view>
+				</view>
+				<view class="filter-panel-right">
+					<view wx:for="{{filterdata.city[cityindex].subcity}}" wx:key="{{item.id}}" bindtap="setSubcityIndex" data-subcityindex="{{index}}" data-subcityid="{{item.id}}" class="{{subcityindex==index?'active':''}}">{{item.title}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="filter-shadow" wx:if="{{showfilter}}" bindtap="hideFilter"></view>
+	</view>
+	<scroll-view class="container-body" scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading">
+		<view wx:if="{{myClaimList.length>0}}"  class="service-list">
+			<navigator class="service-item" wx:for="{{myClaimList}}" wx:key="{{item.id}}" url="../user_claim_info/user_claim_info?id={{item.id}}">
+				<!-- <view class="service-img">
+					<image src="{{item.imgurl}}" mode="aspectFill"></image>
+				</view> -->
+				<view class="service-text">
+					<view class="service-tite">{{item.serviceName}}</view>
+					<view class="service-tags">
+						<text>{{item.status}}</text>
+					</view>
+					<text class="service-city">公司：{{item.companyName}}</text>
+				</view>
+			</navigator>
+		</view>
+		<view wx:if="{{myClaimList.length==0}}" style="font-size:44rpx; line-height: 2">暂无内容</view>
+
+		<view class="gototop {{scrolltop>200?'active':''}}" bindtap="goToTop"></view>
+	</scroll-view>
+</view>

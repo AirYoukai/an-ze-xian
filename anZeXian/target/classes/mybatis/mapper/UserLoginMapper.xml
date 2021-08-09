@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anzexian.demo.mapper.UserLoginMapper">
+  <resultMap id="BaseResultMap" type="com.anzexian.demo.entity.UserLogin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="login_code" jdbcType="VARCHAR" property="loginCode" />
+    <result column="scanner_id" jdbcType="INTEGER" property="scannerId" />
+    <result column="hasLogin" jdbcType="BIT" property="haslogin" />
+    <result column="is_scanned" jdbcType="BIT" property="isScanned" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_deleted, create_time, login_code, scanner_id, hasLogin, is_scanned
+  </sql>
+  <select id="selectByExample" parameterType="com.anzexian.demo.entity.UserLoginExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_login
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_login
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.anzexian.demo.entity.UserLoginExample">
+    delete from user_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.anzexian.demo.entity.UserLogin" useGeneratedKeys="true" keyProperty="id">
+    insert into user_login (id, is_deleted, create_time, 
+      login_code, scanner_id, hasLogin, 
+      is_scanned)
+    values (#{id,jdbcType=INTEGER}, #{isDeleted,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{loginCode,jdbcType=VARCHAR}, #{scannerId,jdbcType=INTEGER}, #{haslogin,jdbcType=BIT}, 
+      #{isScanned,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anzexian.demo.entity.UserLogin" useGeneratedKeys="true" keyProperty="id">
+    insert into user_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="loginCode != null">
+        login_code,
+      </if>
+      <if test="scannerId != null">
+        scanner_id,
+      </if>
+      <if test="haslogin != null">
+        hasLogin,
+      </if>
+      <if test="isScanned != null">
+        is_scanned,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCode != null">
+        #{loginCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scannerId != null">
+        #{scannerId,jdbcType=INTEGER},
+      </if>
+      <if test="haslogin != null">
+        #{haslogin,jdbcType=BIT},
+      </if>
+      <if test="isScanned != null">
+        #{isScanned,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.anzexian.demo.entity.UserLoginExample" resultType="java.lang.Long">
+    select count(*) from user_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_login
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loginCode != null">
+        login_code = #{record.loginCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scannerId != null">
+        scanner_id = #{record.scannerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.haslogin != null">
+        hasLogin = #{record.haslogin,jdbcType=BIT},
+      </if>
+      <if test="record.isScanned != null">
+        is_scanned = #{record.isScanned,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_login
+    set id = #{record.id,jdbcType=INTEGER},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      login_code = #{record.loginCode,jdbcType=VARCHAR},
+      scanner_id = #{record.scannerId,jdbcType=INTEGER},
+      hasLogin = #{record.haslogin,jdbcType=BIT},
+      is_scanned = #{record.isScanned,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anzexian.demo.entity.UserLogin">
+    update user_login
+    <set>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCode != null">
+        login_code = #{loginCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scannerId != null">
+        scanner_id = #{scannerId,jdbcType=INTEGER},
+      </if>
+      <if test="haslogin != null">
+        hasLogin = #{haslogin,jdbcType=BIT},
+      </if>
+      <if test="isScanned != null">
+        is_scanned = #{isScanned,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anzexian.demo.entity.UserLogin">
+    update user_login
+    set is_deleted = #{isDeleted,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      login_code = #{loginCode,jdbcType=VARCHAR},
+      scanner_id = #{scannerId,jdbcType=INTEGER},
+      hasLogin = #{haslogin,jdbcType=BIT},
+      is_scanned = #{isScanned,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,50 @@
+<view class="container">
+	<view class="container-body space-content">
+		<view class="space-top">
+			<view class="space-info">
+				<!-- <view class="space-title">{{serviceInfo.ParkName}}</view>
+  	  	<view class="space-tags">
+  	  		<text wx:for="{{spacedata.TagIDs}}" wx:key="*this">{{item}}</text>
+  	  	</view> -->
+				<view class="space-list">
+					<view class="space-item">
+						<text class="text-left">套餐名：</text>
+						<text class="text-right"> {{serviceInfo.serviceName}}</text>
+					</view>
+
+					<view class="space-item">
+						<text class="text-left">购买价格：</text>
+						<text class="text-right"> {{serviceInfo.servicePrice}}</text>
+					</view>
+					<!-- <view class="space-item">
+						<text class="text-left">赔偿金额：</text>
+						<text class="text-right"> {{serviceInfo.servicePremium}}</text>
+					</view> -->
+					<view class="space-item">
+						<text class="text-left">有效时长（单位：月）：</text>
+						<text class="text-right"> {{serviceInfo.serviceDuration}}</text>
+					</view>
+					<view class="space-item">
+						<text class="text-left">适用行业：</text>
+						<text class="text-right"> {{serviceInfo.industry}}</text>
+					</view>
+					<view class="space-item">
+						<text class="text-left">公司：</text>
+						<text class="text-right"> {{serviceInfo.companyName}}</text>
+					</view>
+					<!-- <view class="space-item">
+						<text class="text-left">理赔方式：</text>
+						<text class="text-right"> {{serviceInfo.claimMethod}}</text>
+					</view> -->
+					<view class="space-item">
+						<text class="text-left">联系人：</text>
+						<text class="text-right"> {{serviceInfo.contactName}}（电话：{{serviceInfo.contactPhone}}）</text>	
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="container-footer">
+		<text class="apply-btn" bindtap="buyService">购买</text>
+	</view>
+</view>
